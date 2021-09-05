@@ -16,3 +16,8 @@ public class _1271 {
         System.out.println(n.remainder(m));
     }
 }
+
+// short coding
+/*
+    import java.math.*;import java.util.*;class Main{public static void main(String[] args){Scanner s = new Scanner(System.in);BigInteger n=new BigInteger(s.next()), m=new BigInteger(s.next());System.out.print(n.divide(m)+"\n"+n.remainder(m));}}
+ */
