@@ -20,4 +20,7 @@ public class _2752 {
             System.out.print(j + " ");
         }
     }
+
+    // short coding
+    // import java.util.*;class Main{public static void main(String[]a){Scanner sc = new Scanner(System.in);Arrays.stream(sc.nextLine().split(" ")).mapToInt(s->Integer.parseInt(s)).sorted().forEach(s->System.out.print(s+" "));}}
 }
