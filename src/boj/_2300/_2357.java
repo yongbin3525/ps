@@ -6,29 +6,78 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class _2357 {
+    static int[] arr, minTree, maxTree;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        int[] arr1 = new int[N];
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < N; i++){
-            arr1[i] = Integer.parseInt(br.readLine());
+
+        arr = new int[N+1];
+        for(int i = 1; i <= N; i++){
+            arr[i] = Integer.parseInt(br.readLine());
         }
+
+        minTree = new int[N*4];
+        maxTree = new int[N*4];
+
+        StringBuilder sb = new StringBuilder();
+
+        minInit(1, N, 1);
+        maxInit(1, N, 1);
+
+
         for(int i = 0; i < M; i++){
             st = new StringTokenizer(br.readLine());
-            int minA = Integer.parseInt(st.nextToken()) - 1;
-            int minB = Integer.parseInt(st.nextToken());
-            int[] newArr = Arrays.copyOfRange(arr1, minA, minB);
-            List<Integer> intList = new ArrayList<>();
-            for (int element : newArr) {
-                intList.add(element);
-            }
-            Collections.sort(intList);
-            sb.append(intList.get(0));
-            sb.append("\n");
+            int left = Integer.parseInt(st.nextToken());
+            int right = Integer.parseInt(st.nextToken());
+
+            sb.append(minFind(1, N, 1, left, right)).append(" ").append(maxFind(1, N, 1, left, right)).append("\n");
         }
         System.out.println(sb);
+    }
+
+    public static int minInit(int start, int end, int node){
+        if (start == end){
+            return minTree[node] = arr[start];
+        }
+        int mid = (start + end) / 2;
+        return minTree[node] = Math.min(minInit(start, mid, node*2), minInit(mid + 1, end, node * 2 + 1));
+    }
+
+    public static int maxInit(int start, int end, int node) {
+        if (start == end) {
+            return maxTree[node] = arr[start];
+        }
+        int mid = (start + end) / 2;
+        return maxTree[node] = Math.max(maxInit(start, mid, node * 2), maxInit(mid + 1, end, node * 2 + 1));
+    }
+
+    public static int minFind(int start, int end, int node, int left, int right) {
+        if (right < start || end < left) {
+            return Integer.MAX_VALUE;
+        }
+        if (left <= start && end <= right) {
+            return minTree[node];
+        }
+        int mid = (start + end) / 2;
+
+        return Math.min(minFind(start, mid, node * 2, left, right), minFind(mid + 1, end, node * 2 + 1, left, right));
+    }
+
+    public static int maxFind(int start, int end, int node, int left, int right) {
+        if (right < start || end < left) {
+            return Integer.MIN_VALUE;
+        }
+
+        if (left <= start && end <= right) {
+            return maxTree[node];
+        }
+
+        int mid = (start + end) / 2;
+
+        return Math.max(maxFind(start, mid, node * 2, left, right), maxFind(mid + 1, end, node * 2 + 1, left, right));
     }
 }
