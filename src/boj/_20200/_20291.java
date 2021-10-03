@@ -13,10 +13,10 @@ public class _20291 {
         int n = Integer.parseInt(br.readLine());
         Map<String, Integer> map = new TreeMap<>();
 
-        for(int i=0;i<n;i++) {
+        for (int i = 0; i < n; i++) {
             String input = br.readLine();
-            String ext = input.substring(input.indexOf(".")+1);
-            if(map.containsKey(ext)) {
+            String ext = input.substring(input.indexOf(".") + 1);
+            if (map.containsKey(ext)) {
                 int tmp = map.get(ext);
                 map.replace(ext, ++tmp);
             } else {
@@ -24,7 +24,7 @@ public class _20291 {
             }
         }
 
-        for(String key : map.keySet()) {
+        for (String key : map.keySet()) {
             System.out.println(key + " " + map.get(key));
         }
     }
