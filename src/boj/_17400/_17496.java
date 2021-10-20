@@ -23,5 +23,7 @@ public class _17496 {
             day += b;
         }
         System.out.println(cnt * d);
+
+        // System.out.print((sc.nextInt()-1)/sc.nextInt()*sc.nextInt()*sc.nextInt());
     }
 }
