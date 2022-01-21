@@ -5,17 +5,23 @@ import java.util.Scanner;
 public class _2501 {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int N = scan.nextInt();
-        int K = scan.nextInt();
-        int[] arr = new int[N + 1];
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+
         for (int i = 1; i <= N; i++) {
             if (N % i == 0) {
-                arr[i] = i;
+                K--;
+            }
+
+            if (K == 0) {
+                System.out.println(i);
+                break;
             }
         }
-        System.out.println(arr[K]);
-
+        if (K != 0) {
+            System.out.println(0);
+        }
     }
 
 }
