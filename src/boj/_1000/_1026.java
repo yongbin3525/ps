@@ -5,27 +5,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+import java.util.stream.IntStream;
 
 public class _1026 {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
-        int[] a = new int[N];
-        int[] b = new int[N];
-        StringTokenizer st1 = new StringTokenizer(br.readLine());
-        StringTokenizer st2 = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            a[i] = Integer.parseInt(st1.nextToken());
-            b[i] = Integer.parseInt(st2.nextToken());
-        }
+        int[] a = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        int[] b = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+
         Arrays.sort(a);
         Arrays.sort(b);
-        int sum = 0;
-        for (int i = 0; i < N; i++) {
-            sum += a[i] * b[N - i - 1];
-        }
-        System.out.println(sum);
+
+        System.out.println(IntStream.range(0, N).map(i -> a[i] * b[N - i - 1]).sum());
 
     }
 }
