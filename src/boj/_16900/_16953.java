@@ -23,7 +23,7 @@ public class _16953 {
             }
 
             if (B % 2 == 0) {
-                B >>= 1;
+                B /= 2;
             } else {
                 B = Long.parseLong(str.substring(0, str.length() - 1));
             }
