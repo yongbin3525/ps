@@ -10,7 +10,10 @@ public class _1789 {
         long sum = 0;
         int count = 0;
 
-        for (int i = 1; sum < num; i++) {
+        for (int i = 1; ; i++) {
+            if (sum > num) {
+                break;
+            }
             sum += i;
             count++;
         }
